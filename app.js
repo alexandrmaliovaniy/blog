@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const MongoConnect = require('./MongoConnect');
 const app = express();
 
+app.use('/api/auth', require('./routes/auth.routes'));
+
 const PORT = config.get('port') || 3000;
 
 MongoConnect(config.get('mongo'))
