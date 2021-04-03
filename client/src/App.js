@@ -1,11 +1,16 @@
-import './App.css';
+import "./App.css";
+import {BrowserRouter as Router} from 'react-router-dom';
+import {useRoutes} from './routes';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello world</h1>
-    </div>
-  );
+    const routes = useRoutes(false);
+    return (
+        <Router>
+            <div className="App">
+                {routes}
+            </div>
+        </Router>
+    );
 }
 
 export default App;
