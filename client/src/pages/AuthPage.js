@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './AuthPage.css';
 import { useHttp } from '../hooks/http.hook';
+import {AuthContext} from '../context/AuthContext';
 
 function AuthPage() {
-
+    const auth = useContext(AuthContext);
     const { loading, request, error } = useHttp();
     const [form, newFrom] = useState(true); // Login = true; Reg = false
     const [validationError, setValidationError] = useState({
@@ -46,9 +47,8 @@ function AuthPage() {
         if (emailError === "" && passError === "") {
             try {
                 const data = await request('/api/auth/login', 'POST', field);
-                console.log(data);
+                auth.login(data.token, data.userId);
             } catch (e) {
-                console.log(e);
                 serverError = e.server;
             }
         }

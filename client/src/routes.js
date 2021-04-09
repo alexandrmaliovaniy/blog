@@ -11,10 +11,7 @@ export const useRoutes = isAuth => {
                 <Route path="/home" exact>
                     <HomePage />
                 </Route>
-                <Route path="/auth" exact>
-                    <AuthPage />
-                </Route>
-                <Route path="/user/:id">
+                <Route path="/user/:login">
                     <UserPage />
                 </Route>
                 <Redirect to="/home" />
@@ -23,10 +20,16 @@ export const useRoutes = isAuth => {
     }
     return (
         <Switch>
-            <Route path="/" exact>
+            <Route path="/home" exact>
+                <HomePage />
+            </Route>
+            <Route path="/auth" exact>
                 <AuthPage />
             </Route>
-            <Redirect to="/" />
+            <Route path="/user/:login">
+                <UserPage />
+            </Route>
+            <Redirect to="/home"/>
         </Switch>
     )
 }
