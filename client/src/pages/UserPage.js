@@ -1,6 +1,7 @@
 import React, {useState, useCallback, useEffect}  from 'react';
 import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
+import UserSection from './UserSection/UserSection';
 
 function UserPage() {
     const [userData, setUserData] = useState(null);
@@ -22,14 +23,7 @@ function UserPage() {
 
     return (
         <div className="UserPage">
-            {
-                userData ? 
-                `Login: ${userData.login}
-                Email: ${userData.email}
-                `
-                :
-                ""
-            }
+            <UserSection {...userData} />
         </div>
     )
 }
