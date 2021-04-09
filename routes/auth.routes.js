@@ -22,17 +22,16 @@ router.post(
         if (!errors.isEmpty()) {
             return res.status(400).json({erroes: errors.array()});
         }
-
         const {email, password, login, avatar} = req.body;
 
 
         const emailCopy = await User.findOne({email});
         if (emailCopy) {
-            return res.status(400).json({message: `Email: "${email}" is already registered`});
+            return res.status(400).json({email: `Email: "${email}" is already registered`});
         }
         const loginCopy = await User.findOne({login});
         if (loginCopy) {
-            return res.status(400).json({message: `Login: ${loginCopy} is already registered`});
+            return res.status(400).json({login: `Login: ${loginCopy} is already registered`});
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
@@ -46,7 +45,7 @@ router.post(
 
         await user.save();
 
-        res.status(201).json({message: "Done"});
+        res.status(200).json({message: "Done"});
 
     } catch(e) {
         res.status(500).json({message: "Something goes wrong ..."});
@@ -55,31 +54,25 @@ router.post(
 
 router.post(
     "/login",
-    [
-        check('password', 'Wrong password format')
-        .isLength({min: 7, max: 24}),
-        check('login', 'Wrong login format')
-        .isLength({min: 3, max: 18})
-    ],
     async (req, res) => {
     try {
-        const errors = validationResult(req);
+        // const errors = validationResult(req);
 
-        if (!errors.isEmpty()) {
-            return res.status(400).json({erroes: errors.array()});
-        }
+        // if (!errors.isEmpty()) {
+        //     return res.status(400).json({erroes: errors.array()});
+        // }
 
-        const {login, password} = req.body;
+        const {email, password} = req.body;
 
-        const user = await User.findOne({login});
+        const user = await User.findOne({email});
         if (!user) {
-            return res.status(400).json({message: 'Wrong login'});
+            return res.status(400).json({server: 'Wrong email or password'});
         }
 
         const auth = await bcrypt.compare(password, user.password);
 
         if (!auth) {
-            return res.status(400).json({message: 'Wrong password'});
+            return res.status(400).json({server: 'Wrong email or password'});
         }
 
         const token = jwt.sign(

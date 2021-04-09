@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './AuthPage.css';
+import { useHttp } from '../hooks/http.hook';
 
 function AuthPage() {
 
-
+    const { loading, request, error } = useHttp();
     const [form, newFrom] = useState(true); // Login = true; Reg = false
     const [validationError, setValidationError] = useState({
         email: "",
         login: "",
         password: "",
         confirmPassword: "",
+        server: ""
     })
     const [field, setField] = useState({
         email: "",
@@ -23,9 +25,9 @@ function AuthPage() {
             newFrom(val);
         }
     }
-    
+
     function InputField(e) {
-        setField({...field, [e.target.name]: e.target.value});
+        setField({ ...field, [e.target.name]: e.target.value });
     }
 
     function AuthValidation() {
@@ -33,37 +35,61 @@ function AuthPage() {
         const emailError = emailReg.test(field.email) ? "" : "Wrong email format. Make sure your email mathes template acoount@mail.com";
 
         const passReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-        const passError = passReg.test(field.password) ? "" : "Wrong password format. Use 8-24 letters A-z 0-9 and special symblos";
+        const passError = passReg.test(field.password) ? "" : "Wrong password format. Use 8-24 letters A-z 0-9 and contains at least one capital letter and digit";
         return [emailError, passError]
     }
 
-    function Login(e) {
+    async function Login(e) {
         e.preventDefault();
         const [emailError, passError] = AuthValidation();
+        let serverError = "";
+        if (emailError === "" && passError === "") {
+            try {
+                const data = await request('/api/auth/login', 'POST', field);
+                console.log(data);
+            } catch (e) {
+                console.log(e);
+                serverError = e.server;
+            }
+        }
+
         setValidationError({
             ...validationError,
             email: emailError,
-            password: passError
+            password: passError,
+            server: serverError
         });
 
     }
 
-    function Registration(e) {
+    async function Registration(e) {
         e.preventDefault();
-        
-        const [emailError, passError] = AuthValidation();
+        let serverError = "";
+        let [emailError, passError] = AuthValidation();
 
         const loginReg = /^[a-zA-Z0-9]{6,18}$/;
 
-        const loginError = loginReg.test(field.login) ? "" : "Wront login format. Use 6-18 letters A-z 0-9";
-        
+        let loginError = loginReg.test(field.login) ? "" : "Wront login format. Use 6-18 letters A-z 0-9";
+
         const passConfirmError = field.password === field.confirmPassword ? "" : "Passwords are different";
+
+        if (emailError === "" && passError === "" && loginError === "" && passConfirmError === "") {
+            try {
+                const data = await request('/api/auth/register', 'POST', field);
+            } catch (e) {
+                serverError = e.message;
+                emailError = e.email || "";
+                loginError = e.login || "";
+            }
+        }
+
         setValidationError({
             ...validationError,
             email: emailError,
             password: passError,
             login: loginError,
-            confirmPassword: passConfirmError
+            confirmPassword: passConfirmError,
+            server: serverError
         });
 
 
@@ -73,19 +99,37 @@ function AuthPage() {
         <div className="AuthPage">
             <div className="windowForm">
                 <div className="buttons">
-                    <button className={form ? "active" : ""} onClick={()=>ChangeForm(true)}>Login</button>
-                    <button className={form ? "" : "active"} onClick={()=>ChangeForm(false)}>Register</button>
+                    <button className={form ? "active" : ""} onClick={() => ChangeForm(true)}>Login</button>
+                    <button className={form ? "" : "active"} onClick={() => ChangeForm(false)}>Register</button>
                 </div>
                 <form>
-                    <input type="text" name="email" className={validationError.email === "" ? "" : "error"} placeholder="example@mail.com" onChange={InputField}/>
+                    <input
+                        type="text"
+                        name="email"
+                        className={validationError.email === "" ? "" : "error"}
+                        placeholder="example@mail.com"
+                        onChange={InputField}
+                    />
                     {validationError.email === "" ? "" : <div className="validationError">{validationError.email}</div>}
-                    {form ? "" : <input type="text" className={validationError.login === "" ? "" : "error"} name="login" placeholder="login" onChange={InputField}/>}
+                    {form ? "" : <input type="text" className={validationError.login === "" ? "" : "error"} name="login" placeholder="login" onChange={InputField} />}
                     {validationError.login === "" || form ? "" : <div className="validationError">{validationError.login}</div>}
-                    <input type="password" className={validationError.password === "" ? "" : "error"} name="password" placeholder="password" onChange={InputField}/>
-                    {validationError.password === "" || form ? "" : <div className="validationError">{validationError.password}</div>}
-                    {form ? "" : <input type="password" className={validationError.confirmPassword === "" ? "" : "error"} name="confirmPassword" placeholder="confirm password" onChange={InputField}/>}
+                    <input
+                        type="password"
+                        className={validationError.password === "" ? "" : "error"}
+                        name="password" placeholder="password"
+                        onChange={InputField}
+                    />
+                    {validationError.password === "" ? "" : <div className="validationError">{validationError.password}</div>}
+                    {form ? "" : <input type="password" className={validationError.confirmPassword === "" ? "" : "error"} name="confirmPassword" placeholder="confirm password" onChange={InputField} />}
                     {validationError.confirmPassword === "" || form ? "" : <div className="validationError">{validationError.confirmPassword}</div>}
-                    <input type="submit" className="sbm" value={form ? "Login" : "Register"} onClick={form ? Login : Registration}/>
+                    {validationError.server === "" || !form ? "" : <div className="validationError">{validationError.server}</div>}
+                    <input
+                        type="submit"
+                        className="sbm"
+                        value={form ? "Login" : "Register"}
+                        onClick={form ? Login : Registration}
+                        disabled={loading}
+                    />
                 </form>
             </div>
         </div>
