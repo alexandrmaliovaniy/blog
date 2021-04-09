@@ -9,7 +9,7 @@ function UserSection(props) {
             <div className="userLogin">{props.login}</div>
             <div className="userEmail">{props.email}</div>
             {
-                user.id === props.id ? 
+                user.userId === props._id ? 
                     <a className="changeInfo" href="/">Change information</a>
                 :
                     ""
