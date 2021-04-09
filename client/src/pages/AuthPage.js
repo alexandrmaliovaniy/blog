@@ -47,7 +47,7 @@ function AuthPage() {
         if (emailError === "" && passError === "") {
             try {
                 const data = await request('/api/auth/login', 'POST', field);
-                auth.login(data.token, data.userId);
+                auth.login(data.token, data.userId, data.userLogin);
             } catch (e) {
                 serverError = e.server;
             }

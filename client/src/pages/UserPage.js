@@ -1,8 +1,8 @@
 import React, {useState, useCallback, useEffect}  from 'react';
 import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
-import UserSection from './UserSection/UserSection';
-
+import UserSection from '../UserSection/UserSection';
+import UserPosts from '../UserPosts/UserPosts';
 function UserPage() {
     const [userData, setUserData] = useState(null);
     const {request} = useHttp();
@@ -10,7 +10,6 @@ function UserPage() {
     const getUser = useCallback(async () => {
         try {
             const user = await request(`/api/user/${userLogin}`, 'GET', null);
-            console.log(user);
             setUserData(user);
         } catch (e) {
 
@@ -24,6 +23,7 @@ function UserPage() {
     return (
         <div className="UserPage">
             <UserSection {...userData} />
+            <UserPosts />
         </div>
     )
 }

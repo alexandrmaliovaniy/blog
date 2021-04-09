@@ -9,7 +9,7 @@ html, body, .App, #root, .AuthPage {
     height: 100%;
 }
 body {
-    background: rgb(255, 249, 238);
+    background: #fff
 }
 .AuthPage {
     width: 20%;

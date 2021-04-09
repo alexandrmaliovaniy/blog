@@ -1,0 +1,27 @@
+.Header {
+    float: left;
+    width: 100%;
+    height: 30px;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.Header .tab {
+    float: left;
+    margin-right: 20px;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 30px;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    transition: .2s;
+}
+.Header .tab:hover {
+    border-bottom: 2px solid rgb(69, 91, 218);
+    background: rgb(161, 161, 161);
+}
+.Header .auth {
+    float: right;
+}
