@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
 import UserSection from '../UserSection/UserSection';
 import UserPosts from '../UserPosts/UserPosts';
+import './UserPage.css';
 function UserPage() {
     const [userData, setUserData] = useState(null);
     const {request} = useHttp();
