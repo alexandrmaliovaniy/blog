@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import './UserPosts.css';
-import UserPost from './UserPost/UserPost';
+
+const UserPost = React.lazy(() => import('./UserPost/UserPost'));
 
 function UserPosts(props) {
     return (
         <div className="UserPosts">
-            <div className="newPost"><a href="/">+</a></div>
-            <UserPost />
-            <UserPost />
-            <UserPost />
+            {props.isAuthor ? <div className="newPost"><a href="/">+</a></div> : ""}
+            <Suspense fallback={<div className="lazyPost"><div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>}>
+                <UserPost />
+            </Suspense>
         </div>
     )
 }

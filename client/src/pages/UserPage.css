@@ -4,3 +4,23 @@
     padding-left: 5%;
     padding-right: 5%;
 }
+
+.UserPage .lazySection {
+    float: left;
+    width: 300px;
+}
+.UserPage .lazySection .img {
+    float: left;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #eee;
+    margin-left: 50px;
+}
+.UserPage .lazySection .login, .UserPage .lazySection .email {
+    float: left;
+    width: 100%;
+    height: 30px;
+    margin-top: 20px;
+    background: #eee;
+}
