@@ -3,6 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import UserPage from './pages/UserPage';
+import NewPostPage from './pages/NewPostPage';
 
 export const useRoutes = isAuth => {
     if (isAuth) {
@@ -11,10 +12,13 @@ export const useRoutes = isAuth => {
                 <Route path="/home" exact>
                     <HomePage />
                 </Route>
-                <Route path="/user/:login">
+                <Route path="/user/:login/">
                     <UserPage />
                 </Route>
-                <Redirect to="/home" />
+                <Route path="/post/:login">
+                    <NewPostPage />
+                </Route>
+                {/* <Redirect to="/home" /> */}
             </Switch>
         )
     }
@@ -26,10 +30,10 @@ export const useRoutes = isAuth => {
             <Route path="/auth" exact>
                 <AuthPage />
             </Route>
-            <Route path="/user/:login">
+            {/* <Route path="/user/:login">
                 <UserPage />
-            </Route>
-            <Redirect to="/home"/>
+            </Route> */}
+            {/* <Redirect to="/home"/> */}
         </Switch>
     )
 }

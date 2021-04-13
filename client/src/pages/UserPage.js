@@ -31,7 +31,7 @@ function UserPage() {
             <Suspense fallback={<div className="lazySection"><div className="img"></div><div className="login"></div><div className="email"></div></div>}>
                 <UserSection {...userData} isAuthor={userData ? userData._id === vitisor.userId : false} />
             </Suspense>
-            <UserPosts isAuthor={userData ? userData._id === vitisor.userId : false}/>
+            <UserPosts {...userData} isAuthor={userData ? userData._id === vitisor.userId : false}/>
         </div>
     )
 }

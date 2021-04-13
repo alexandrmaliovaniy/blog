@@ -6,7 +6,9 @@ const schema = new Schema({
     password: {type: String, required: true},
     avatar: {type: String},
     bio: {type: String},
-    posts: [{type: Types.ObjectId, ref: 'Post'}]
+    posts: [{type: Types.ObjectId, ref: 'Post'}],
+    follows: [{type: Types.ObjectId, ref: 'User'}],
+    followers: [{type: Types.ObjectId, ref: 'User'}]
 });
 
 module.exports = model("User", schema);

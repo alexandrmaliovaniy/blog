@@ -1,0 +1,63 @@
+import React, {useState} from 'react';
+import {useParams} from 'react-router-dom';
+import TextNode from '../PostNodes/TextNode';
+import ImageNode from '../PostNodes/ImageNode';
+import './NewPostPage.css';
+
+function NewPostPage() {
+
+    const [data, setData] = useState({
+        title: "",
+        titleImage: "",
+        description: "",
+        content: ""
+    });
+
+    function Input(e) {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    function LoadImage(e) {
+        const reader = new FileReader();
+        const file = e.target.files[0];
+
+        reader.onloadend = () => {
+            setData({
+                ...data,
+                titleImage: reader.result
+            });
+        }
+        reader.readAsDataURL(file);
+    }
+
+    function Submit(e) {
+        e.preventDefault();
+        
+    }
+
+    return (
+        <div className="NewPostPage">
+            <form className="postForm">
+
+                <h1>Headline</h1>
+                <hr />
+
+                <input type="text" placeholder="Title" name="title" className="title" onChange={Input} />
+                <input type="file" accept=".png, .jpg, .jpeg" name="titleImage" className="titleImage" onChange={LoadImage} />
+                <input type="text" placeholder="Short description" name="description" className="description" onChange={Input} />
+                <h1>Main content</h1>
+                <hr />
+
+                <textarea name="content" onChange={Input}></textarea>
+
+                <input type="submit" value="Publish" className="sbm" onClick={Submit} />
+            </form>
+        </div>
+    )
+}
+
+
+export default NewPostPage;
