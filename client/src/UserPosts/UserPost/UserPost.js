@@ -4,13 +4,10 @@ import React from 'react';
 function UserPost(props) {
     return (
         <div className="UserPost">
-            <a href={`/`}>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png" alt="post title" className="postShort"/>
+            <a href={`/post/preview/${props._id}`}>
+                <img src={props.titleImage} alt="post title" className="postShort"/>
                 <p className="postDescription">
-                    Some description here
-                    Some description here
-                    Some description hereSome description here
-                    Some description here
+                    {props.description}
                 </p>
             </a>
         </div>

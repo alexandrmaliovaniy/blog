@@ -5,9 +5,9 @@ const MongoConnect = require('./MongoConnect');
 const app = express();
 
 app.use(express.json({extended: true}));
-// app.use(express.static('client/public'));
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/user', require('./routes/user.routes'));
+app.use('/api/post/', require('./routes/posts.routes'));
 
 const PORT = config.get('port') || 5000;
 

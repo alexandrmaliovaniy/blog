@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import './NewPostPage.css';
+import {useHttp} from '../hooks/http.hook';
+import {AuthContext} from '../context/AuthContext';
 
 function NewPostPage() {
-
+    const {token} = useContext(AuthContext);
+    const {request} = useHttp();
     const [data, setData] = useState({
         title: "",
         titleImage: "",
@@ -31,9 +34,16 @@ function NewPostPage() {
         reader.readAsDataURL(file);
     }
 
-    function Submit(e) {
+    async function Submit(e) {
         e.preventDefault();
-
+        try {
+            const {id} = await request("/api/post/new", 'POST', data, {
+                Authorization: `Bearer ${token}`
+            })
+            window.location = `/post/${id}`;
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     return (

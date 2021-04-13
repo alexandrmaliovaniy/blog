@@ -12,10 +12,13 @@ export const useRoutes = isAuth => {
                 <Route path="/home" exact>
                     <HomePage />
                 </Route>
-                <Route path="/user/:login/">
+                <Route path="/user/:login">
                     <UserPage />
                 </Route>
-                <Route path="/post/:login">
+                <Route path="/post/new">
+                    <NewPostPage />
+                </Route>
+                <Route path="/post/preview/:id">
                     <NewPostPage />
                 </Route>
                 <Redirect to="/home" />
