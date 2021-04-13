@@ -4,11 +4,19 @@ import {useRoutes} from './routes';
 import {useAuth} from './hooks/auth.hook';
 import {AuthContext} from './context/AuthContext';
 import Header from './Header/Header';
+import Preloader from './pages/Preloader';
 
 function App() {
-    const {token, userId, login, logout, userLogin} = useAuth();
+    const {token, userId, login, logout, userLogin, ready} = useAuth();
     const isAuth = !!token;
     const routes = useRoutes(isAuth);
+
+    if (!ready) {
+        return (
+            <Preloader />
+        );   
+    }
+
     return (
         <AuthContext.Provider value={{
             token,login,logout,userId,isAuth,userLogin

@@ -1,7 +1,6 @@
 import React, {useState, useCallback, useEffect, useContext, Suspense}  from 'react';
 import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
-// import UserSection from '../UserSection/UserSection';
 import UserPosts from '../UserPosts/UserPosts';
 import './UserPage.css';
 import {AuthContext} from '../context/AuthContext';

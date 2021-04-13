@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
-import TextNode from '../PostNodes/TextNode';
-import ImageNode from '../PostNodes/ImageNode';
 import './NewPostPage.css';
 
 function NewPostPage() {
@@ -35,7 +33,7 @@ function NewPostPage() {
 
     function Submit(e) {
         e.preventDefault();
-        
+
     }
 
     return (

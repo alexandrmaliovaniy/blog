@@ -18,7 +18,7 @@ export const useRoutes = isAuth => {
                 <Route path="/post/:login">
                     <NewPostPage />
                 </Route>
-                {/* <Redirect to="/home" /> */}
+                <Redirect to="/home" />
             </Switch>
         )
     }
@@ -30,10 +30,10 @@ export const useRoutes = isAuth => {
             <Route path="/auth" exact>
                 <AuthPage />
             </Route>
-            {/* <Route path="/user/:login">
+            <Route path="/user/:login">
                 <UserPage />
-            </Route> */}
-            {/* <Redirect to="/home"/> */}
+            </Route>
+            <Redirect to="/home"/>
         </Switch>
     )
 }
