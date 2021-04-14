@@ -5,7 +5,7 @@ import {useHttp} from '../hooks/http.hook';
 import {AuthContext} from '../context/AuthContext';
 
 function NewPostPage() {
-    const {token} = useContext(AuthContext);
+    const {token, logout} = useContext(AuthContext);
     const {request} = useHttp();
     const [data, setData] = useState({
         title: "",
@@ -42,7 +42,8 @@ function NewPostPage() {
             })
             window.location = `/post/${id}`;
         } catch (e) {
-            console.log(e);
+            logout();
+            window.location = '/auth';
         }
     }
 
