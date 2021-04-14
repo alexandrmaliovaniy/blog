@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import UserPage from './pages/UserPage';
 import NewPostPage from './pages/NewPostPage';
+import PostPage from './pages/PostPage';
 
 export const useRoutes = isAuth => {
     if (isAuth) {
@@ -19,7 +20,7 @@ export const useRoutes = isAuth => {
                     <NewPostPage />
                 </Route>
                 <Route path="/post/preview/:id">
-                    <NewPostPage />
+                    <PostPage />
                 </Route>
                 <Redirect to="/home" />
             </Switch>

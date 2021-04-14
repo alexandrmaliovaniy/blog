@@ -15,7 +15,6 @@ function UserPage() {
     const userLogin = useParams().login;
     const getUserPosts = useCallback(async(postsArr) => {
         try {
-            console.log(1);
             const posts = await request('/api/post/get', 'post', postsArr);
             console.log(posts);
             setPosts(posts);
