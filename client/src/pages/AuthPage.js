@@ -92,10 +92,7 @@ function AuthPage() {
             confirmPassword: passConfirmError,
             server: serverError
         });
-
-
     }
-
     return (
         <div className="AuthPage">
             <div className="windowForm">
