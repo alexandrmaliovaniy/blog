@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './UserSection.css';
+import {AuthContext} from '../context/AuthContext';
 function UserSection(props) {
+    const {logout} = useContext(AuthContext);
+    function Logout() {
+        logout();
+        window.location = '/home';
+    }
     return (
         <div className="UserSection">
             <img src={props.image || "../avatar.png"} alt="user avatar" />
@@ -8,7 +14,10 @@ function UserSection(props) {
             <div className="userEmail">{props.email}</div>
             {
                 props.isAuthor ? 
-                    <a className="changeInfo" href="/">Change information</a>
+                    <div className="control">
+                        <a className="changeInfo" href="/">Change information</a>
+                        <button onClick={Logout} className="logout">Log out</button>
+                    </div>
                 :
                     ""
             }

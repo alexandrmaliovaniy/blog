@@ -76,6 +76,7 @@ function AuthPage() {
         if (emailError === "" && passError === "" && loginError === "" && passConfirmError === "") {
             try {
                 const data = await request('/api/auth/register', 'POST', field);
+                newFrom(true);
             } catch (e) {
                 serverError = e.message;
                 emailError = e.email || "";

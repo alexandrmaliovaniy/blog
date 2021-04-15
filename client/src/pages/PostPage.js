@@ -2,7 +2,7 @@ import React, {useState, useCallback, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowDown, faArrowUp} from '@fortawesome/free-solid-svg-icons';
+import {faArrowDown, faArrowUp, faClock} from '@fortawesome/free-solid-svg-icons';
 import './PostPage.css';
 
 function PostPage() {
@@ -61,7 +61,7 @@ function PostPage() {
                 <p className="description">{data.description}</p>
                 <div className="postInfo">
                     <div className="author"><i>written by <a href={`/user/${data.authorLogin}`}>{data.authorLogin}</a></i></div>
-                    <div className="postTime">{data.publishDate}</div>
+                    <div className="postTime"><FontAwesomeIcon icon={faClock} /> {data.publishDate}</div>
                 </div>
             </div>
             <img src={data.img} alt="none" />
