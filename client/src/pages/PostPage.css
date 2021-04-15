@@ -1,0 +1,50 @@
+.PostPage {
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 100px;
+}
+.PostPage .vote {
+    float: left;
+    width: 120px;
+    height: 200px;
+    background: #000;
+}
+.PostPage .mainInformation {
+    float: left;
+    position: relative;
+    width: calc(95% - 320px);
+    margin-right: 5%;
+    height: 200px;
+    padding: 20px 50px 20px 50px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #ccc;
+}
+.PostPage .mainInformation .postInfo {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+}
+.PostPage .mainInformation .postInfo .author {
+    float: left;
+}
+.PostPage .mainInformation .postInfo .postTime {
+    float: right;
+}
+.PostPage img {
+    float: left;
+    width: 200px;
+    height: 200px;
+}
+.PostPage .content {
+    float: left;
+    width: 100%;
+    padding: 50px;
+    box-shadow: 2px 2px 5px #ccc;
+    margin-top: 20px;
+    font-size: 20px;
+}
