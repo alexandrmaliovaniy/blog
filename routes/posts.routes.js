@@ -38,6 +38,15 @@ router.post('/get', async (req, res) => {
     }
     res.json(posts);
 });
-
+router.post('/getrecent', async (req, res) => {
+    try {
+        const offset = req.body.offset;
+        const count = req.body.count < 20 ? req.body.count : 20;
+        const data = await Post.find().sort({publishDate: -1}).skip(offset).limit(count);
+        res.json(data);
+    } catch (e) {
+        console.log(e);
+    }
+});
 
 module.exports = router;
