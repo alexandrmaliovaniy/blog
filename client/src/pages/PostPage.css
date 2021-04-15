@@ -12,7 +12,15 @@
     float: left;
     width: 120px;
     height: 200px;
-    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    user-select: none;
+}
+.PostPage .vote .voteUp, .PostPage .vote .voteDown {
+    cursor: pointer;
 }
 .PostPage .mainInformation {
     float: left;
@@ -26,8 +34,9 @@
 }
 .PostPage .mainInformation .postInfo {
     float: left;
-    width: 100%;
-    margin-top: 20px;
+    position: absolute;
+    bottom: 10px;
+    width: calc(95%);
 }
 .PostPage .mainInformation .postInfo .author {
     float: left;

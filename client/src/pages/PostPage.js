@@ -1,6 +1,8 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faArrowDown, faArrowUp} from '@fortawesome/free-solid-svg-icons';
 import './PostPage.css';
 
 function PostPage() {
@@ -11,7 +13,8 @@ function PostPage() {
         img: "",
         content: "",
         authorLogin: "",
-        publishDate: ""
+        publishDate: "",
+        votes: 0
 
     })
     const articleId = useParams().id;
@@ -25,7 +28,8 @@ function PostPage() {
                 description: data.description,
                 content: data.content,
                 authorLogin: data.authorLogin,
-                publishDate: String(new Date(data.publishDate))
+                publishDate: String(new Date(data.publishDate)),
+                votes: data.votes
             })
         } catch(e) {
             console.log(e);
@@ -37,11 +41,20 @@ function PostPage() {
     }, [getData]);
 
 
+    function Vote(index) {
+        setData({
+            ...data,
+            votes: data.votes+index
+        })
+    }
+
 
     return (
         <article className="PostPage">
             <div className="vote">
-
+                <FontAwesomeIcon icon={faArrowUp} className="voteUp" onClick={()=>Vote(1)} />
+                <span className="count">{data.votes}</span>
+                <FontAwesomeIcon icon={faArrowDown} className="voteDown" onClick={()=>Vote(-1)} />
             </div>
             <div className="mainInformation">
                 <h1 className="title">{data.title}</h1>
