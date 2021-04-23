@@ -68,6 +68,9 @@ function PostPage() {
             <div className="content">
                 {data.content}
             </div>
+            <div className="comments">
+                
+            </div>
         </article>
     )
 }

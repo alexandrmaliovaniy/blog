@@ -3,7 +3,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {useRoutes} from './routes';
 import {useAuth} from './hooks/auth.hook';
 import {AuthContext} from './context/AuthContext';
-import Header from './Header/Header';
+import Header from './components/Header/Header';
 import Preloader from './pages/Preloader';
 
 function App() {

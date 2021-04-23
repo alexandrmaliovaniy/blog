@@ -1,11 +1,11 @@
 import React, {useState, useCallback, useEffect, useContext, Suspense}  from 'react';
 import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
-import UserPosts from '../UserPosts/UserPosts';
+import UserArticles from '../components/UserArticles/UserArticles';
 import './UserPage.css';
 import {AuthContext} from '../context/AuthContext';
 
-const UserSection = React.lazy(() => import('../UserSection/UserSection'));
+const UserSection = React.lazy(() => import('../components/UserDetails/UserDetails'));
 
 function UserPage() {
     const vitisor = useContext(AuthContext);
@@ -46,7 +46,7 @@ function UserPage() {
                 <UserSection {...userData} isAuthor={userData ? userData._id === vitisor.userId : false} />
             </Suspense>
             {userData && posts ? 
-            <UserPosts posts={posts} isAuthor={userData ? userData._id === vitisor.userId : false}/>
+            <UserArticles posts={posts} isAuthor={userData ? userData._id === vitisor.userId : false}/>
             :
             ""
             }
