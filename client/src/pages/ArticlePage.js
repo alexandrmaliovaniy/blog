@@ -1,8 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faArrowDown, faArrowUp, faClock} from '@fortawesome/free-solid-svg-icons';
+import ShortArticle from '../components/Article/ShortArticle/ShortArticle';
 import './ArticlePage.css';
 
 function ArticlePage() {
@@ -51,7 +50,8 @@ function ArticlePage() {
 
     return (
         <article className="ArticlePage">
-            <div className="vote">
+            <ShortArticle {...data} />
+            {/* <div className="vote">
                 <FontAwesomeIcon icon={faArrowUp} className="voteUp" onClick={()=>Vote(1)} />
                 <span className="count">{data.votes}</span>
                 <FontAwesomeIcon icon={faArrowDown} className="voteDown" onClick={()=>Vote(-1)} />
@@ -64,7 +64,7 @@ function ArticlePage() {
                     <div className="postTime"><FontAwesomeIcon icon={faClock} /> {data.publishDate}</div>
                 </div>
             </div>
-            <img src={data.img} alt="none" />
+            <img src={data.img} alt="none" /> */}
             <div className="content">
                 {data.content}
             </div>

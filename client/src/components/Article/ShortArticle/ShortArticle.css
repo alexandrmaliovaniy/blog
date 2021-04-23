@@ -1,0 +1,39 @@
+.ShortArticle {
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    box-shadow: 2px 2px 5px #ccc;
+
+}
+.ShortArticle img {
+    float: left;
+    width: 200px;
+}
+.ShortArticle .info {
+    float: left;
+    position: relative;
+    flex-shrink: 1;
+    flex-grow: 1;
+    padding: 20px;
+}
+.ShortArticle .info .title,
+.ShortArticle .info .description,
+.ShortArticle .info .author,
+.ShortArticle .info .publishDate {
+    float: left;
+    width: 100%;
+}
+.ShortArticle .info .title {
+
+}
+.ShortArticle .info .description {
+    margin-top: 20px;
+}
+.ShortArticle .info .author {
+    margin-top: 40px;
+}
+.ShortArticle .info .publishDate {
+    margin-top: 10px;
+}

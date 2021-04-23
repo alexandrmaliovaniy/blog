@@ -1,0 +1,14 @@
+.Votes {
+    float: left;
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    user-select: none;
+    background: #efefefef;
+}
+.Votes .voteArrow {
+    cursor: pointer;
+}

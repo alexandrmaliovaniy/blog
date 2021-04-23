@@ -8,47 +8,6 @@
     padding-right: 5%;
     padding-bottom: 100px;
 }
-.ArticlePage .vote {
-    float: left;
-    width: 120px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    user-select: none;
-}
-.ArticlePage .vote .voteUp, .ArticlePage .vote .voteDown {
-    cursor: pointer;
-}
-.ArticlePage .mainInformation {
-    float: left;
-    position: relative;
-    width: calc(95% - 320px);
-    margin-right: 5%;
-    height: 200px;
-    padding: 20px 50px 20px 50px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px #ccc;
-}
-.ArticlePage .mainInformation .postInfo {
-    float: left;
-    position: absolute;
-    bottom: 10px;
-    width: calc(95%);
-}
-.ArticlePage .mainInformation .postInfo .author {
-    float: left;
-}
-.ArticlePage .mainInformation .postInfo .postTime {
-    float: right;
-}
-.ArticlePage img {
-    float: left;
-    width: 200px;
-    height: 200px;
-}
 .ArticlePage .content {
     float: left;
     width: 100%;
