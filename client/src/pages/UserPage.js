@@ -10,43 +10,36 @@ const UserSection = React.lazy(() => import('../components/UserDetails/UserDetai
 function UserPage() {
     const vitisor = useContext(AuthContext);
     const [userData, setUserData] = useState(null);
-    const [posts, setPosts] = useState(null);
     const {request} = useHttp();
     const userLogin = useParams().login;
-    const getUserPosts = useCallback(async(postsArr) => {
+    const getUserPosts = useCallback(async(user) => {
         try {
-            const posts = await request('/api/post/get', 'post', postsArr);
-            console.log(posts);
-            setPosts(posts);
+            const posts = await request('/api/post/get', 'post', user.posts);
+            setUserData({...user, posts});
         } catch(e) {
             console.log(e);
         }
-    }, [request])
+    }, [request, userData])
     const getUser = useCallback(async () => {
         try {
             const user = await request(`/api/user/${userLogin}`, 'GET', null);
             setUserData(user);
+            getUserPosts(user);
         } catch (e) {
-
+            console.log(e);
         }
     }, [userLogin, request]);
 
     useEffect(() => {
         getUser();
     }, [getUser])
-
-    useEffect(() => {
-        if (userData) getUserPosts(userData.posts);
-    }, [userData, getUserPosts])
-
-
     return (
         <div className="UserPage">
             <Suspense fallback={<div className="lazySection"><div className="img"></div><div className="login"></div><div className="email"></div></div>}>
                 <UserSection {...userData} isAuthor={userData ? userData._id === vitisor.userId : false} />
             </Suspense>
-            {userData && posts ? 
-            <UserArticles posts={posts} isAuthor={userData ? userData._id === vitisor.userId : false}/>
+            {userData ?
+                <UserArticles posts={userData.posts} isAuthor={userData._id === vitisor.userId}/>
             :
             ""
             }
