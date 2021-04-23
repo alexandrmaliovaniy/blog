@@ -3,9 +3,9 @@ import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faArrowDown, faArrowUp, faClock} from '@fortawesome/free-solid-svg-icons';
-import './PostPage.css';
+import './ArticlePage.css';
 
-function PostPage() {
+function ArticlePage() {
     const {request} = useHttp();
     const [data, setData] = useState({
         title: "",
@@ -50,7 +50,7 @@ function PostPage() {
 
 
     return (
-        <article className="PostPage">
+        <article className="ArticlePage">
             <div className="vote">
                 <FontAwesomeIcon icon={faArrowUp} className="voteUp" onClick={()=>Vote(1)} />
                 <span className="count">{data.votes}</span>
@@ -75,4 +75,4 @@ function PostPage() {
     )
 }
 
-export default PostPage;
+export default ArticlePage;

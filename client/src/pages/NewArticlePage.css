@@ -1,4 +1,4 @@
-.NewPostPage {
+.NewArticlePage {
     float: left;
     width: 100%;
     margin-top: 50px;
@@ -7,17 +7,17 @@
     padding-right: 5%;
     padding-bottom: 200px;
 }
-.NewPostPage .postForm {
+.NewArticlePage .postForm {
     float: left;
     width: 100%;
 }
-.NewPostPage .postForm input {
+.NewArticlePage .postForm input {
     display: block;
     margin-top: 50px;
     /* float: left; */
 }
 
-.NewPostPage .postForm textarea {
+.NewArticlePage .postForm textarea {
     margin-top: 50px;
     resize: vertical;
     width: 100%;
@@ -31,7 +31,7 @@
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
-.NewPostPage .postForm .sbm {
+.NewArticlePage .postForm .sbm {
     padding: 5px 40px 5px 40px;
     font-size: 24px;
     border-radius: 5px;

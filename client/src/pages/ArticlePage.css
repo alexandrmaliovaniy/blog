@@ -1,4 +1,4 @@
-.PostPage {
+.ArticlePage {
     float: left;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 50px;
@@ -8,7 +8,7 @@
     padding-right: 5%;
     padding-bottom: 100px;
 }
-.PostPage .vote {
+.ArticlePage .vote {
     float: left;
     width: 120px;
     height: 200px;
@@ -19,10 +19,10 @@
     font-size: 40px;
     user-select: none;
 }
-.PostPage .vote .voteUp, .PostPage .vote .voteDown {
+.ArticlePage .vote .voteUp, .ArticlePage .vote .voteDown {
     cursor: pointer;
 }
-.PostPage .mainInformation {
+.ArticlePage .mainInformation {
     float: left;
     position: relative;
     width: calc(95% - 320px);
@@ -32,24 +32,24 @@
     border-radius: 5px;
     box-shadow: 2px 2px 5px #ccc;
 }
-.PostPage .mainInformation .postInfo {
+.ArticlePage .mainInformation .postInfo {
     float: left;
     position: absolute;
     bottom: 10px;
     width: calc(95%);
 }
-.PostPage .mainInformation .postInfo .author {
+.ArticlePage .mainInformation .postInfo .author {
     float: left;
 }
-.PostPage .mainInformation .postInfo .postTime {
+.ArticlePage .mainInformation .postInfo .postTime {
     float: right;
 }
-.PostPage img {
+.ArticlePage img {
     float: left;
     width: 200px;
     height: 200px;
 }
-.PostPage .content {
+.ArticlePage .content {
     float: left;
     width: 100%;
     padding: 50px;

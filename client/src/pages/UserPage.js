@@ -33,6 +33,7 @@ function UserPage() {
     useEffect(() => {
         getUser();
     }, [getUser])
+    
     return (
         <div className="UserPage">
             <Suspense fallback={<div className="lazySection"><div className="img"></div><div className="login"></div><div className="email"></div></div>}>

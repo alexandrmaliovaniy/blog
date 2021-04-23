@@ -3,8 +3,8 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage';
 import UserPage from './pages/UserPage';
-import NewPostPage from './pages/NewPostPage';
-import PostPage from './pages/PostPage';
+import NewPostPage from './pages/NewArticlePage';
+import PostPage from './pages/ArticlePage';
 
 export const useRoutes = isAuth => {
     if (isAuth) {

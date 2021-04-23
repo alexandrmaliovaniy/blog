@@ -1,10 +1,10 @@
 import React, {useState, useContext} from 'react';
 import {useParams} from 'react-router-dom';
-import './NewPostPage.css';
+import './NewArticlePage.css';
 import {useHttp} from '../hooks/http.hook';
 import {AuthContext} from '../context/AuthContext';
 
-function NewPostPage() {
+function NewArticlePage() {
     const {token, logout} = useContext(AuthContext);
     const {request} = useHttp();
     const [data, setData] = useState({
@@ -48,7 +48,7 @@ function NewPostPage() {
     }
 
     return (
-        <div className="NewPostPage">
+        <div className="NewArticlePage">
             <form className="postForm">
 
                 <h1>Headline</h1>
@@ -69,4 +69,4 @@ function NewPostPage() {
 }
 
 
-export default NewPostPage;
+export default NewArticlePage;
