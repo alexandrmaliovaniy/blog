@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: stretch;
     box-shadow: 2px 2px 5px #ccc;
-
+    font-family: Arial, Helvetica, sans-serif;
 }
 .ShortArticle img {
     float: left;

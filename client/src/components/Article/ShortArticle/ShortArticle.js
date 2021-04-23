@@ -6,7 +6,7 @@ import Votes from '../Votes/Votes';
 function ShortArticle(props) {
     return (
         <div className="ShortArticle">
-            <img src={props.img} alt={props.title}/>
+            <img src={props.titleImage} alt={props.title}/>
             <div className="info">
                 <h1 className="title">{props.title}</h1>
                 <p className="description">{props.description}</p>

@@ -9,7 +9,7 @@ function ArticlePage() {
     const [data, setData] = useState({
         title: "",
         description: "",
-        img: "",
+        titleImage: "",
         content: "",
         authorLogin: "",
         publishDate: "",
@@ -23,7 +23,7 @@ function ArticlePage() {
             const data = (await request('/api/post/get', 'POST', [articleId]))[0];
             setData({
                 title: data.title,
-                img: data.titleImage,
+                titleImage: data.titleImage,
                 description: data.description,
                 content: data.content,
                 authorLogin: data.authorLogin,
