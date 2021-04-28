@@ -25,8 +25,9 @@
     float: left;
     width: 100%;
 }
-.ShortArticle .info .title {
-
+.ShortArticle .info .title a {
+    text-decoration: none;
+    color: #555;
 }
 .ShortArticle .info .description {
     margin-top: 20px;
