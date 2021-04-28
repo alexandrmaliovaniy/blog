@@ -15,4 +15,5 @@
     box-shadow: 2px 2px 5px #ccc;
     margin-top: 20px;
     font-size: 20px;
+    white-space: pre-line;
 }

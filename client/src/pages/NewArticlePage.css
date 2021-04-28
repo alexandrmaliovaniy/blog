@@ -7,14 +7,84 @@
     padding-right: 5%;
     padding-bottom: 200px;
 }
-.NewArticlePage .postForm {
+
+.NewArticlePage .postForm, .NewArticlePage .postForm .mainData {
     float: left;
     width: 100%;
 }
-.NewArticlePage .postForm input {
+.NewArticlePage .postForm .mainData .headers {
+    float: left;
+    width: 50%;
+}
+
+.NewArticlePage .postForm .mainData .headers input {
+    float: left;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 25px;
+    outline: none;
+    transition: .2s;
+}
+.NewArticlePage .postForm .mainData .headers input:focus {
+    border-bottom: 2px solid rgb(92, 167, 228);
+}
+
+.NewArticlePage .postForm .mainData .imgHeadline {
+    float: right;
+    width: 30%;
+}
+
+.NewArticlePage .postForm .mainData .imgHeadline input {
+    display: none;
+}
+.NewArticlePage .postForm .mainData .imgHeadline .imgPrev {
+    float: right;
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.NewArticlePage .postForm .mainData .imgHeadline .imgPrev img {
+    width: 100%;
+    height: 100%;
+}
+.NewArticlePage .postForm .mainContent {
+    float: left;
+    margin-top: 50px;
+    resize: vertical;
+    width: 100%;
+    min-height: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px 5px #ccc;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.NewArticlePage .postForm .sbm {
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+    margin-top: 50px;
+    float: left;
+    padding: 5px 40px 5px 40px;
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+/*.NewArticlePage .postForm input {
     display: block;
     margin-top: 50px;
-    /* float: left; */
 }
 
 .NewArticlePage .postForm textarea {
@@ -35,4 +105,4 @@
     padding: 5px 40px 5px 40px;
     font-size: 24px;
     border-radius: 5px;
-}
+} */

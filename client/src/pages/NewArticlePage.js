@@ -1,6 +1,8 @@
 import React, {useState, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import './NewArticlePage.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faDownload} from '@fortawesome/free-solid-svg-icons';
 import {useHttp} from '../hooks/http.hook';
 import {AuthContext} from '../context/AuthContext';
 
@@ -20,7 +22,12 @@ function NewArticlePage() {
             [e.target.name]: e.target.value
         })
     }
-
+    function TextInput(e) {
+        setData({
+            ...data,
+            [e.target.attributes.name.value]: e.target.innerText
+        })
+    }
     function LoadImage(e) {
         const reader = new FileReader();
         const file = e.target.files[0];
@@ -42,8 +49,9 @@ function NewArticlePage() {
             })
             window.location = `/post/${id}`;
         } catch (e) {
-            logout();
-            window.location = '/auth';
+            console.log(e);
+            // logout();
+            // window.location = '/auth';
         }
     }
 
@@ -51,17 +59,18 @@ function NewArticlePage() {
         <div className="NewArticlePage">
             <form className="postForm">
 
-                <h1>Headline</h1>
-                <hr />
-
-                <input type="text" placeholder="Title" name="title" className="title" onChange={Input} />
-                <input type="file" accept=".png, .jpg, .jpeg" name="titleImage" className="titleImage" onChange={LoadImage} />
-                <input type="text" placeholder="Short description" name="description" className="description" onChange={Input} />
-                <h1>Main content</h1>
-                <hr />
-
-                <textarea name="content" onChange={Input}></textarea>
-
+                <div className="mainData">
+                    <div className="headers">
+                        <input type="text" placeholder="Title" name="title" className="title" onChange={Input} />
+                        <input type="text" placeholder="Description" name="description" className="description" onChange={Input} />
+                    </div>
+                    <div className="imgHeadline">
+                        <label for="imgContainer" className="imgPrev">{data.titleImage ? <img src={data.titleImage} alt="head" /> : <div><FontAwesomeIcon icon={faDownload}/>  Upload Image</div>}</label>
+                        <input type="file" accept="image" id="imgContainer" onChange={LoadImage} />
+                    </div>
+                </div>
+                <div name="content" className="mainContent" contentEditable="true" onInput={TextInput}></div>
+                {/* <textarea name="content" className="mainContent" onChange={Input}></textarea> */}
                 <input type="submit" value="Publish" className="sbm" onClick={Submit} />
             </form>
         </div>
