@@ -19,7 +19,8 @@ router.post('/new', auth, async (req, res) => {
             content,
             publishDate: Date.now(),
             authorLogin: user.login,
-            votes: 0
+            votes: 0,
+            records: {"0": null}
         })
         user.posts.push(post._id);
         await post.save();
@@ -29,6 +30,20 @@ router.post('/new', auth, async (req, res) => {
         res.status(400).json({message: "Error"});
     }
 })
+router.post('/rate', auth, async(req, res) => {
+    try {
+        const {userId, postId, vote} = req.body;
+        const post = await Post.findById(postId);
+        const votes = post.votes + vote;
+        const records = {...post.records, [userId]: Math.sign(vote)};
+        post.votes = votes;
+        post.records = records;
+        await post.save();
+        res.json({msg: "success"})
+    } catch(e) {
+        console.log(e);
+    }
+});
 router.post('/get', async (req, res) => {
     const posts = [];
     const postsId = req.body;

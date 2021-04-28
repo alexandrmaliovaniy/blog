@@ -13,7 +13,7 @@ function ShortArticle(props) {
                 <p className="author">written by <a href={`/user/${props.authorLogin}`}>{props.authorLogin}</a></p>
                 <p className="publishDate"><FontAwesomeIcon icon={faClock} /> {(new Date(props.publishDate).toLocaleString())}</p>
             </div>
-            <Votes />
+            <Votes {...props} />
         </div>
     );
 }

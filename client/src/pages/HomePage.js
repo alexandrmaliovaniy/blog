@@ -31,7 +31,6 @@ function HomePage() {
         <div className="HomePage">
             {
                 posts.map((el, index) => {
-                    console.log(el);
                     return <ShortArticle key={index} {...el} />
                 })
             }

@@ -12,3 +12,6 @@
 .Votes .voteArrow {
     cursor: pointer;
 }
+.Votes .active {
+   color: rgb(255, 174, 52);
+}

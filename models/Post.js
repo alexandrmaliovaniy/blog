@@ -7,7 +7,8 @@ const schema = new Schema({
     description: {type: String, required: true},
     publishDate: {type: Number, required: true},
     authorLogin: {type: String, required: true},
-    votes: {type: Number}
+    votes: {type: Number},
+    records: {type: Object}
 });
 
 module.exports = model("Post", schema);

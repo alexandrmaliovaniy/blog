@@ -13,7 +13,7 @@ function ArticlePage() {
         content: "",
         authorLogin: "",
         publishDate: "",
-        votes: null
+        votes: {}
 
     })
     const articleId = useParams().id;
@@ -21,6 +21,7 @@ function ArticlePage() {
     const getData = useCallback(async() => {
         try {
             const data = (await request('/api/post/get', 'POST', [articleId]))[0];
+            console.log(data);
             setData({
                 title: data.title,
                 titleImage: data.titleImage,
