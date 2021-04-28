@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const {check, validationResult} = require('express-validator');
 const config = require('config');
 const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth.middleware');
 const User = require('../models/User');
 const router = Router();
 
@@ -56,12 +57,6 @@ router.post(
     "/login",
     async (req, res) => {
     try {
-        // const errors = validationResult(req);
-
-        // if (!errors.isEmpty()) {
-        //     return res.status(400).json({erroes: errors.array()});
-        // }
-
         const {email, password} = req.body;
 
         const user = await User.findOne({email});
@@ -87,6 +82,14 @@ router.post(
 
     } catch(e) {
         res.status(500).json({message: "Something goes wrong ..."});
+    }
+})
+
+router.post('/validate', auth, (req, res) => {
+    if (req.user) {
+        res.json({msg: true})
+    } else {
+        res.json({msg: false})
     }
 })
 

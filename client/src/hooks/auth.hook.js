@@ -1,14 +1,23 @@
 import React, {useState, useCallback, useEffect} from 'react';
+import {useHttp} from './http.hook';
 
 const storageName = "userData";
 
 export function useAuth() {
+    const {request} = useHttp();
     const [ready, setReady] = useState(false);
     const [token, setToken] = useState(null);
     const [userId, setUserId] = useState(null);
     const [userLogin, setUserLogin] = useState(null);
 
-    const login = useCallback((jwtToken, id, userLogin) => {
+    const login = useCallback(async(jwtToken, id, userLogin) => {
+        try {
+            await request('/api/auth/validate', 'POST', null, {
+                Authorization: `Bearer ${jwtToken}`
+            })
+        } catch(e) {
+            return logout();
+        }
         setToken(jwtToken);
         setUserId(id);
         setUserLogin(userLogin);
