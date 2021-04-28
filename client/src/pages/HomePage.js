@@ -1,6 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {useHttp} from '../hooks/http.hook';
 import ShortArticle from '../components/Article/ShortArticle/ShortArticle';
+import './HomePage.css';
 
 function HomePage() {
 

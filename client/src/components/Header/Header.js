@@ -7,7 +7,6 @@ function Header() {
     return (
         <header className='Header'>
             <a className='Home tab' href="/home" >Home</a>
-            <a className='Search tab' href="/">Search</a>
             <a className='auth tab' href={auth.isAuth ? `/user/${auth.userLogin}` : `/auth`}>
                 {auth.isAuth ? "Profile" : "Log in"}
             </a>

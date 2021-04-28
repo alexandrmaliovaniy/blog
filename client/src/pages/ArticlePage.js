@@ -13,7 +13,7 @@ function ArticlePage() {
         content: "",
         authorLogin: "",
         publishDate: "",
-        votes: 0
+        votes: null
 
     })
     const articleId = useParams().id;
@@ -27,7 +27,7 @@ function ArticlePage() {
                 description: data.description,
                 content: data.content,
                 authorLogin: data.authorLogin,
-                publishDate: String(new Date(data.publishDate)),
+                publishDate: data.publishDate,
                 votes: data.votes
             })
         } catch(e) {
@@ -39,32 +39,9 @@ function ArticlePage() {
         getData();
     }, [getData]);
 
-
-    function Vote(index) {
-        setData({
-            ...data,
-            votes: data.votes+index
-        })
-    }
-
-
     return (
         <article className="ArticlePage">
             <ShortArticle {...data} />
-            {/* <div className="vote">
-                <FontAwesomeIcon icon={faArrowUp} className="voteUp" onClick={()=>Vote(1)} />
-                <span className="count">{data.votes}</span>
-                <FontAwesomeIcon icon={faArrowDown} className="voteDown" onClick={()=>Vote(-1)} />
-            </div>
-            <div className="mainInformation">
-                <h1 className="title">{data.title}</h1>
-                <p className="description">{data.description}</p>
-                <div className="postInfo">
-                    <div className="author"><i>written by <a href={`/user/${data.authorLogin}`}>{data.authorLogin}</a></i></div>
-                    <div className="postTime"><FontAwesomeIcon icon={faClock} /> {data.publishDate}</div>
-                </div>
-            </div>
-            <img src={data.img} alt="none" /> */}
             <div className="content">
                 {data.content}
             </div>
