@@ -11,13 +11,6 @@ export function useAuth() {
     const [userLogin, setUserLogin] = useState(null);
 
     const login = useCallback(async(jwtToken, id, userLogin) => {
-        try {
-            await request('/api/auth/validate', 'POST', null, {
-                Authorization: `Bearer ${jwtToken}`
-            })
-        } catch(e) {
-            return logout();
-        }
         setToken(jwtToken);
         setUserId(id);
         setUserLogin(userLogin);

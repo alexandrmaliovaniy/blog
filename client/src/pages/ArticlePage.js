@@ -7,13 +7,16 @@ import './ArticlePage.css';
 function ArticlePage() {
     const {request} = useHttp();
     const [data, setData] = useState({
+        loaded: false,
+        _id: 0,
         title: "",
         description: "",
         titleImage: "",
         content: "",
         authorLogin: "",
         publishDate: "",
-        votes: {}
+        votes: 0,
+        records: {}
 
     })
     const articleId = useParams().id;
@@ -21,15 +24,17 @@ function ArticlePage() {
     const getData = useCallback(async() => {
         try {
             const data = (await request('/api/post/get', 'POST', [articleId]))[0];
-            console.log(data);
             setData({
+                loaded: true,
+                _id: data._id,
                 title: data.title,
                 titleImage: data.titleImage,
                 description: data.description,
                 content: data.content,
                 authorLogin: data.authorLogin,
                 publishDate: data.publishDate,
-                votes: data.votes
+                votes: data.votes,
+                records: data.records
             })
         } catch(e) {
             console.log(e);
@@ -42,7 +47,7 @@ function ArticlePage() {
 
     return (
         <article className="ArticlePage">
-            <ShortArticle {...data} />
+            {data.loaded ? <ShortArticle {...data} /> : ""}
             <div className="content">
                 {data.content}
             </div>

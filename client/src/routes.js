@@ -34,6 +34,9 @@ export const useRoutes = isAuth => {
             <Route path="/auth" exact>
                 <AuthPage />
             </Route>
+            <Route path="/post/preview/:id">
+                    <PostPage />
+                </Route>
             <Route path="/user/:login">
                 <UserPage />
             </Route>
