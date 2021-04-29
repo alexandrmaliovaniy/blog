@@ -1,19 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useHttp} from '../../hooks/http.hook';
+import {AuthContext} from '../../context/AuthContext';
 import './CommentForm.css';
 
 
-function CommentForm() {
-
+function CommentForm(params) {
+    const {token} = useContext(AuthContext);
     const {request} = useHttp();
-    const [commnet, setComment] = useState('');
+    const [comment, setComment] = useState('');
 
     function InputText(e) {
         setComment(e.target.innerText);
-        console.log(commnet);
     }
-    function SbmComment() {
-        console.log("sbm");
+    async function SbmComment() {
+        if (comment.length < 10 || comment.length > 1500) return;
+        try {
+            const res = await request('/api/post/comment', 'POST', {
+                postId: params.postId,
+                text: comment
+            }, {
+                Authorization: `Bearer ${token}`
+            })
+            
+        } catch(e) {
+            console.log(e);
+        }
+
     }
     return(
         <div className="CommentForm">

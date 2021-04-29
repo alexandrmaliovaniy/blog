@@ -91,12 +91,14 @@ router.get('/commentsText', async(req, res) => {
 
 
 router.post('/comment', auth, async(req, res) => {
+    console.log(1);
     try {
         const {postId, text} = req.body;
+        console.log(text);
         const commentRecod = new Comment({
             publishDate: Date.now(),
             author: req.user.userId,
-            text
+            text: text
         })
         await commentRecod.save();
         const comments = await Comments.findOne({postId});

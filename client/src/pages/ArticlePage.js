@@ -55,7 +55,7 @@ function ArticlePage() {
             {/* <div className="comments">
                 
             </div> */}
-            <CommentForm />
+            <CommentForm postId={articleId} />
         </article>
     )
 }
