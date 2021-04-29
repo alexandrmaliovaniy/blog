@@ -1,4 +1,6 @@
 import React, {useContext} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faUserCircle, faSignInAlt} from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
 import {AuthContext} from '../../context/AuthContext';
 
@@ -8,7 +10,7 @@ function Header() {
         <header className='Header'>
             <a className='Home tab' href="/home" >Home</a>
             <a className='auth tab' href={auth.isAuth ? `/user/${auth.userLogin}` : `/auth`}>
-                {auth.isAuth ? "Profile" : "Log in"}
+                <FontAwesomeIcon icon={auth.isAuth ? faUserCircle : faSignInAlt} />
             </a>
         </header>
     )
