@@ -8,9 +8,11 @@
 .CommentForm .commentText {
     float: left;
     width: 100%;
-    min-height: 50px;
+    min-height: 150px;
+    padding-bottom: 15px;
     font-size: 18px;
     outline: none;
+    border-bottom: 2px dashed #ddd;
 }
 .CommentForm .sbmComment {
     float: right;

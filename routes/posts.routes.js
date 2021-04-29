@@ -3,7 +3,8 @@ const User = require('../models/User');
 const router = Router();
 const Post = require('../models/Post');
 const auth = require('../middleware/auth.middleware');
-
+const Comments = require('../models/Comments');
+const Comment = require('../models/Comment');
 
 
 // /api/post
@@ -60,6 +61,58 @@ router.post('/getrecent', async (req, res) => {
         const data = await Post.find().sort({publishDate: -1}).skip(offset).limit(count);
         res.json(data);
     } catch (e) {
+        console.log(e);
+    }
+});
+
+router.get('/comments', async(req, res) => {
+    try {
+        const {postId} = req.body;
+        let  data = {};
+        const comments = await Comment.findOne({postId});
+        if (!comments) throw "No comments yet";
+        data = data.assign(comments);
+    } catch(e) {
+        console.log(e);
+    }
+});
+
+router.get('/commentsText', async(req, res) => {
+    const {comments} =  req.body;
+
+    const response = [];
+
+    for (let i = 0; i < comments.length; i++) {
+        const comment = await Comment.findById(comments[i]);
+        response.push(comment);
+    }
+    res.json(response);
+});
+
+
+router.post('/comment', auth, async(req, res) => {
+    try {
+        const {postId, text} = req.body;
+        const commentRecod = new Comment({
+            publishDate: Date.now(),
+            author: req.user.userId,
+            text
+        })
+        await commentRecod.save();
+        const comments = await Comments.findOne({postId});
+
+        if (!comments) {
+            const newComment = new Comments({
+                postId,
+                comments: [commentRecod._id]
+            })
+            await newComment.save();
+        } else {
+            comments.comments.push(commentRecod._id);
+            await comments.save();
+        }
+        res.json({msg: "success"});
+    } catch(e) {
         console.log(e);
     }
 });

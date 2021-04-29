@@ -9,7 +9,8 @@ function CommentForm() {
     const [commnet, setComment] = useState('');
 
     function InputText(e) {
-        setComment(e.innerText);
+        setComment(e.target.innerText);
+        console.log(commnet);
     }
     function SbmComment() {
         console.log("sbm");
