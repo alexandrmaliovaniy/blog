@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
 import ShortArticle from '../components/Article/ShortArticle/ShortArticle';
 import './ArticlePage.css';
+import CommentForm from '../components/CommentForm/CommentForm';
 
 function ArticlePage() {
     const {request} = useHttp();
@@ -51,9 +52,10 @@ function ArticlePage() {
             <div className="content">
                 {data.content}
             </div>
-            <div className="comments">
+            {/* <div className="comments">
                 
-            </div>
+            </div> */}
+            <CommentForm />
         </article>
     )
 }

@@ -16,4 +16,10 @@
     margin-top: 20px;
     font-size: 20px;
     white-space: pre-line;
+    margin-bottom: 20px;
+}
+
+.ArticlePage .CommentForm {
+    float: right;
+    width: 40%;
 }

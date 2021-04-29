@@ -1,0 +1,26 @@
+.CommentForm {
+    float: left;
+    width: 100%;
+    padding: 15px;
+    box-shadow: 2px 2px 5px #ccc;
+    box-sizing: border-box;
+}
+.CommentForm .commentText {
+    float: left;
+    width: 100%;
+    min-height: 50px;
+    font-size: 18px;
+    outline: none;
+}
+.CommentForm .sbmComment {
+    float: right;
+    height: 30px;
+    width: 120px;
+    font-size: 16px;
+    border-radius: 5px;
+    background: rgb(121, 235, 29);
+    border: none;
+    box-shadow: 2px 2px 5px rgb(89, 172, 22);
+    color: #fff;
+    margin-top: 30px;
+}
