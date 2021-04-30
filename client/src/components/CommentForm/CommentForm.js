@@ -25,7 +25,6 @@ function CommentForm(params) {
         } catch(e) {
             console.log(e);
         }
-
     }
     return(
         <div className="CommentForm">

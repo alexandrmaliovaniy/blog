@@ -70,17 +70,15 @@ router.post('/getcomments', async(req, res) => {
         const {postId} = req.body;
         const comments = await Comments.findOne({postId});
         if (!comments) throw "No comments yet";
-        res.json([comments]);
+        res.json(comments);
     } catch(e) {
-        res.json([]);
+        res.json(null);
     }
 });
 
 router.post('/commentsText', async(req, res) => {
     const {comments} =  req.body;
-
     const response = [];
-
     for (let i = 0; i < comments.length; i++) {
         const comment = await Comment.findById(comments[i]);
         response.push(comment);
