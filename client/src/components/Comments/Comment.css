@@ -1,0 +1,19 @@
+.Comment {
+    float: left;
+    width: 100%;
+    box-shadow: 2px 2px 5px #ccc;
+    padding: 15px;
+}
+.Comment .text {
+    float: left;
+    width: 100%;
+    min-height: 60px;
+    margin-bottom: 10px;
+    white-space: pre-line;
+}
+.Comment .author {
+    float: left;
+}
+.Comment .publishDate {
+    float: right;
+}

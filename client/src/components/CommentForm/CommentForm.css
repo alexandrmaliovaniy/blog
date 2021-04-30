@@ -14,6 +14,12 @@
     outline: none;
     border-bottom: 2px dashed #ddd;
 }
+.CommentForm .warning {
+    float: left;
+    width: calc(100% - 180px);
+    color: rgb(206, 59, 59);
+    padding-top: 20px;
+}
 .CommentForm .sbmComment {
     float: right;
     height: 30px;

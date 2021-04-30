@@ -1,6 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import {useHttp} from '../../hooks/http.hook';
 import Comment from './Comment';
+import './Comments.css';
 
 function Comments(props) {
 
@@ -37,8 +38,6 @@ function Comments(props) {
             getComments();
         }
     }, [props.postId])
-
-    console.log(comments);
     return (
         <div className="Comments">
             {

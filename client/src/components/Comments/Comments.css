@@ -1,0 +1,9 @@
+.Comments {
+    float: left;
+    width: 100%;
+    padding-right: 40%;
+    box-sizing: border-box;
+}
+.Comments .Comment {
+    margin-bottom: 30px;
+}
