@@ -65,19 +65,18 @@ router.post('/getrecent', async (req, res) => {
     }
 });
 
-router.get('/comments', async(req, res) => {
+router.post('/getcomments', async(req, res) => {
     try {
         const {postId} = req.body;
-        let  data = {};
-        const comments = await Comment.findOne({postId});
+        const comments = await Comments.findOne({postId});
         if (!comments) throw "No comments yet";
-        data = data.assign(comments);
+        res.json([comments]);
     } catch(e) {
-        console.log(e);
+        res.json([]);
     }
 });
 
-router.get('/commentsText', async(req, res) => {
+router.post('/commentsText', async(req, res) => {
     const {comments} =  req.body;
 
     const response = [];
@@ -91,18 +90,18 @@ router.get('/commentsText', async(req, res) => {
 
 
 router.post('/comment', auth, async(req, res) => {
-    console.log(1);
     try {
         const {postId, text} = req.body;
-        console.log(text);
+        const user = await User.findById(req.user.userId);
+        console.log(user.login);
+
         const commentRecod = new Comment({
             publishDate: Date.now(),
-            author: req.user.userId,
-            text: text
+            text: text,
+            authorLogin: user.login
         })
         await commentRecod.save();
         const comments = await Comments.findOne({postId});
-
         if (!comments) {
             const newComment = new Comments({
                 postId,

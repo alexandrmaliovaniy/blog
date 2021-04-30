@@ -4,6 +4,7 @@ import {useHttp} from '../hooks/http.hook';
 import ShortArticle from '../components/Article/ShortArticle/ShortArticle';
 import './ArticlePage.css';
 import CommentForm from '../components/CommentForm/CommentForm';
+import Comments from "../components/Comments/Comments";
 
 function ArticlePage() {
     const {request} = useHttp();
@@ -52,9 +53,7 @@ function ArticlePage() {
             <div className="content">
                 {data.content}
             </div>
-            {/* <div className="comments">
-                
-            </div> */}
+            <Comments postId={data._id} />
             <CommentForm postId={articleId} />
         </article>
     )

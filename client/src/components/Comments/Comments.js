@@ -11,7 +11,7 @@ function Comments(props) {
 
     const getComments = useCallback(async() => {
         try {
-            const data = request('/api/post/comments', 'POST', {
+            const data = await request('/api/post/getcomments', 'POST', {
                 postId: props.postId
             });
             console.log(data);
@@ -22,8 +22,11 @@ function Comments(props) {
 
 
     useEffect(() => {
-        getComments();
-    }, [getComments])
+        if (props.postId !== 0) {
+            console.log(1);
+            getComments();
+        }
+    }, [props.postId])
 
 
     return (
