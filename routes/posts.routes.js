@@ -66,13 +66,17 @@ router.post('/getrecent', async (req, res) => {
 });
 
 router.post('/getcomments', async(req, res) => {
-    try {
-        const {postId} = req.body;
-        const comments = await Comments.findOne({postId});
-        if (!comments) throw "No comments yet";
+    const {postId} = req.body;
+    const comments = await Comments.findOne({postId});
+    if (!comments) {
+        const cm = new Comments({
+            postId,
+            comments: []
+        })
+        await cm.save();
+        res.json(cm);
+    } else {
         res.json(comments);
-    } catch(e) {
-        res.json(null);
     }
 });
 
