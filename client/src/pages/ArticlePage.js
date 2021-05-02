@@ -5,9 +5,11 @@ import ShortArticle from '../components/Article/ShortArticle/ShortArticle';
 import './ArticlePage.css';
 import CommentForm from '../components/CommentForm/CommentForm';
 import Comments from "../components/Comments/Comments";
+import {CommentsContext} from '../context/CommentsContext';
 
 function ArticlePage() {
     const {request} = useHttp();
+    const [comments, setComments] = useState({loaded:false, comments: []});
     const [data, setData] = useState({
         loaded: false,
         _id: 0,
@@ -53,8 +55,10 @@ function ArticlePage() {
             <div className="content">
                 {data.content}
             </div>
-            <Comments postId={data._id} />
-            <CommentForm postId={articleId} />
+            <CommentsContext.Provider value={{comments, setComments}}>
+                <Comments postId={data._id} />
+                <CommentForm postId={articleId} />
+            </CommentsContext.Provider>
         </article>
     )
 }

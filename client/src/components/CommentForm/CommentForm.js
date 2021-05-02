@@ -2,10 +2,11 @@ import React, {useState, useContext} from 'react';
 import {useHttp} from '../../hooks/http.hook';
 import {AuthContext} from '../../context/AuthContext';
 import './CommentForm.css';
-
+import {CommentsContext} from '../../context/CommentsContext';
 
 function CommentForm(params) {
-    const {token} = useContext(AuthContext);
+    const {token, userLogin} = useContext(AuthContext);
+    const {comments, setComments} = useContext(CommentsContext);
     const {request} = useHttp();
     const [comment, setComment] = useState('');
     const [textError, serTextError] = useState('');
@@ -25,6 +26,9 @@ function CommentForm(params) {
             }, {
                 Authorization: `Bearer ${token}`
             })
+            const arr = comments.comments;
+            arr.push(res);
+            setComments({...comments, comments: arr});
             setComment("");
             document.querySelector('.commentText').innerText = "";
         } catch(e) {

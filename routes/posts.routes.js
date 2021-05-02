@@ -91,8 +91,6 @@ router.post('/comment', auth, async(req, res) => {
     try {
         const {postId, text} = req.body;
         const user = await User.findById(req.user.userId);
-        console.log(user.login);
-
         const commentRecod = new Comment({
             publishDate: Date.now(),
             text: text,
@@ -110,7 +108,7 @@ router.post('/comment', auth, async(req, res) => {
             comments.comments.push(commentRecod._id);
             await comments.save();
         }
-        res.json({msg: "success"});
+        res.json(commentRecod);
     } catch(e) {
         console.log(e);
     }

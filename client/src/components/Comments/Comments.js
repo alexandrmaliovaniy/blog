@@ -1,13 +1,14 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useCallback, useEffect, useContext} from 'react';
 import {useHttp} from '../../hooks/http.hook';
 import Comment from './Comment';
 import './Comments.css';
+import {CommentsContext} from '../../context/CommentsContext';
 
 function Comments(props) {
 
     const {request} = useHttp();
 
-    const [comments, setComments] = useState({loaded:false, comments: []});
+    const {comments, setComments} = useContext(CommentsContext);
 
     const getCommentsText = useCallback(async(data) => {
         try {
