@@ -1,20 +1,33 @@
 import React, {useContext, useState} from 'react';
 import './UserDetails.css';
 import {AuthContext} from '../../context/AuthContext';
+import {useHttp} from '../../hooks/http.hook';
 function UserDetails(props) {
-    const {logout, userId} = useContext(AuthContext);
+    const {request} = useHttp();
+    const {logout, userId, token} = useContext(AuthContext);
+    console.log(props);
+    console.log(userId);
     const [follow, setFollow] = useState(props.followers.includes(userId));
     function Logout() {
         logout();
         window.location = '/home';
     }
     async function Follow() {
-        if (follow) {
-
-        } else {
-
+        try {
+            let prefix = ""
+            if (follow) {
+                prefix = "un";   
+            }
+            request(`/api/user/${prefix}follow`, 'POST', {
+                userId: props._id
+            }, {
+                Authorization: `Bearer ${token}`
+            })
+            console.log(1);
+            setFollow(!follow);
+        } catch(e) {
+            console.log(e);
         }
-        setFollow(!follow);
     }
     return (
         <div className="UserDetails">
