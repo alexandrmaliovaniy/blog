@@ -5,6 +5,7 @@ import AuthPage from './pages/AuthPage';
 import UserPage from './pages/UserPage';
 import NewPostPage from './pages/NewArticlePage';
 import PostPage from './pages/ArticlePage';
+import SubscribePage from './pages/SubscribePage';
 
 export const useRoutes = isAuth => {
     if (isAuth) {
@@ -12,6 +13,9 @@ export const useRoutes = isAuth => {
             <Switch>
                 <Route path="/home" exact>
                     <HomePage />
+                </Route>
+                <Route path="/subscribes" exact>
+                    <SubscribePage />
                 </Route>
                 <Route path="/user/:login">
                     <UserPage />

@@ -9,6 +9,7 @@ function Header() {
     return (
         <header className='Header'>
             <a className='Home tab' href="/home" >Home</a>
+            {auth.isAuth ? <a className="tab" href="/subscribes">Subscribes</a> : ""}
             <a className='auth tab' href={auth.isAuth ? `/user/${auth.userLogin}` : `/auth`}>
                 <FontAwesomeIcon icon={auth.isAuth ? faUserCircle : faSignInAlt} />
             </a>

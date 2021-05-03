@@ -51,14 +51,14 @@ router.post('/unfollow', auth, async(req, res) => {
     }
 });
 
-router.get("/subscribecontent", auth, async(req, res) => {
-    const out = [];
+router.post("/subscribecontent", auth, async(req, res) => {
+    const outArr = [];
     const user = await User.findById(req.user.userId);
     for (let i = 0; i < user.follows.length; i++) {
         const follower = await User.findById(user.follows[i]);
-        out.push(...follower.posts.slice(0, 10));
+        outArr.push(...follower.posts.slice(0, 10));
     }
-    res.json(out);
+    res.json(outArr);
 });
 
 module.exports = router;

@@ -52,6 +52,7 @@ router.post('/get', async (req, res) => {
         const post = await Post.findById(postsId[i]);
         posts.push(post);
     }
+    console.log(postsId);
     res.json(posts);
 });
 router.post('/getrecent', async (req, res) => {

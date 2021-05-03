@@ -5,8 +5,6 @@ import {useHttp} from '../../hooks/http.hook';
 function UserDetails(props) {
     const {request} = useHttp();
     const {logout, userId, token} = useContext(AuthContext);
-    console.log(props);
-    console.log(userId);
     const [follow, setFollow] = useState(props.followers.includes(userId));
     function Logout() {
         logout();

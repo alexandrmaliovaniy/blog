@@ -4,6 +4,7 @@ import {faClock} from '@fortawesome/free-solid-svg-icons';
 import Votes from '../Votes/Votes';
 
 function ShortArticle(props) {
+    if (!props._id) return <div></div>;
     return (
         <div className="ShortArticle">
             <img src={props.titleImage} alt={props.title}/>
