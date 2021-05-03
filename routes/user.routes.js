@@ -19,7 +19,7 @@ router.post('/follow', auth, async(req, res) => {
         const {userId} = req.body;
         const target = await User.findById(userId);
         if (!target.followers.includes(req.user.userId)) {
-            target.followers.push(userId);
+            target.followers.push(req.user.userId);
             await target.save();
         }
         const user = await User.findById(req.user.userId);
