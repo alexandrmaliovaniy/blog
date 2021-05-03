@@ -4,8 +4,8 @@ import {useHttp} from '../hooks/http.hook';
 import UserArticles from '../components/UserArticles/UserArticles';
 import './UserPage.css';
 import {AuthContext} from '../context/AuthContext';
-
-const UserSection = React.lazy(() => import('../components/UserDetails/UserDetails'));
+import UserSection from '../components/UserDetails/UserDetails';
+// const UserSection = React.lazy(() => import('../components/UserDetails/UserDetails'));
 
 function UserPage() {
     const vitisor = useContext(AuthContext);
@@ -36,9 +36,10 @@ function UserPage() {
     
     return (
         <div className="UserPage">
-            <Suspense fallback={<div className="lazySection"><div className="img"></div><div className="login"></div><div className="email"></div></div>}>
+            {userData ? <UserSection {...userData} isAuthor={userData ? userData._id === vitisor.userId : false} /> : <div className="lazySection"><div className="img"></div><div className="login"></div><div className="email"></div></div>}
+            {/* <Suspense fallback={<div className="lazySection"><div className="img"></div><div className="login"></div><div className="email"></div></div>}>
                 <UserSection {...userData} isAuthor={userData ? userData._id === vitisor.userId : false} />
-            </Suspense>
+            </Suspense> */}
             {userData ?
                 <UserArticles posts={userData.posts} isAuthor={userData._id === vitisor.userId}/>
             :
