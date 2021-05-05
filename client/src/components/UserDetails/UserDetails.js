@@ -16,12 +16,11 @@ function UserDetails(props) {
             if (follow) {
                 prefix = "un";   
             }
-            request(`/api/user/${prefix}follow`, 'POST', {
+            await request(`/api/user/${prefix}follow`, 'POST', {
                 userId: props._id
             }, {
                 Authorization: `Bearer ${token}`
             })
-            console.log(1);
             setFollow(!follow);
         } catch(e) {
             console.log(e);
