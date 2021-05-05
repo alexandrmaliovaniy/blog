@@ -60,5 +60,22 @@ router.post("/subscribecontent", auth, async(req, res) => {
     }
     res.json(outArr);
 });
+router.post('/update', auth, async(req, res) => {
+    // if req.user.userId == req.body._id or req.user is admin
+    const data = req.body;
+    if (data._id == req.user.userId) {
+        await User.findByIdAndUpdate(data._id, data);
+        const token = jwt.sign(
+            {
+                userId: data._id
+            },
+            config.get('jwtSecret'),
+            {expiresIn: '1h' }
+        );
+        res.json({token, userId: data._id, userLogin: data.login});
+    } else {
+        res.status(505).json({message: "Permition denied"});
+    }
+})
 
 module.exports = router;

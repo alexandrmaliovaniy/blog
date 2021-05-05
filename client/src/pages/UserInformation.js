@@ -1,8 +1,12 @@
 import react, {useState} from 'react';
+import {useHttp} from '../hooks/http.hook';
 import './UserInformation.css';
 
 function UserInformation(props) {
+    const {request} = useHttp();
+    console.log(props.bio);
     const [data, setData] = useState({
+        _id: props._id,
         login: props.login,
         email: props.email,
         avatar: props.avatar,
@@ -28,6 +32,18 @@ function UserInformation(props) {
         setData({...data, [e.target.name]: e.target.value});
     }
 
+    async function UpdateData() {
+        try {
+            const res = await request('/api/user/update', 'POST', data, {
+                Authorization: `Bearer ${props.token}`
+            })
+            props.setModal(false);
+            props.reLogin(res.token, res.userId, res.userLogin);
+            window.location.reload();
+        }catch(e) {
+            console.log(e);
+        }
+    }
     return (
 
         <div className="UserInformation" onClick={()=>props.setModal(false)}>
@@ -40,8 +56,8 @@ function UserInformation(props) {
                     <input type="text" className="email" name="email" value={data.email} onChange={InputData} />
                     <input id="userAvatar" type='file' onChange={LoadImage}/>
                 </div>
-                <textarea className="bio" name="bio" onChange={InputData} />
-                <button>Update</button>
+                <textarea className="bio" name="bio" onChange={InputData} value={data.bio} />
+                <button onClick={UpdateData}>Update</button>
             </div>
         </div>
     )

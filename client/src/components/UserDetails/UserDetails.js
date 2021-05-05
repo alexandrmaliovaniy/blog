@@ -6,7 +6,7 @@ import UserInformation from '../../pages/UserInformation';
 function UserDetails(props) {
     const {request} = useHttp();
     const [modal, setModal] = useState(false);
-    const {logout, userId, token} = useContext(AuthContext);
+    const {logout, userId, token, login} = useContext(AuthContext);
     const [follow, setFollow] = useState(props.followers.includes(userId));
     function Logout() {
         logout();
@@ -44,7 +44,7 @@ function UserDetails(props) {
                         <button className={follow ? "unfollow" : "follow"} onClick={Follow}>{follow ? "Unfollow" : "Follow"}</button>
                     </div>
             }
-            {modal ? <UserInformation {...props} setModal={setModal} /> : ""}
+            {modal ? <UserInformation {...props} setModal={setModal} token={token} reLogin={login} /> : ""}
         </div>
     )
 }
