@@ -10,11 +10,22 @@ export function useAuth() {
     const [userId, setUserId] = useState(null);
     const [userLogin, setUserLogin] = useState(null);
 
-    const login = useCallback(async(jwtToken, id, userLogin) => {
-        setToken(jwtToken);
-        setUserId(id);
-        setUserLogin(userLogin);
-        localStorage.setItem(storageName, JSON.stringify({token: jwtToken, userId: id, userLogin: userLogin}))
+    const login = useCallback(async(jwtToken, id, userLogin) => { 
+        try {
+            await request('/api/auth/validate', 'POST', null, {
+                Authorization: `Bearer ${jwtToken}`
+            })
+            setToken(jwtToken);
+            setUserId(id);
+            setUserLogin(userLogin);
+            localStorage.setItem(storageName, JSON.stringify({token: jwtToken, userId: id, userLogin: userLogin}))
+        } catch(e) {
+            if (e.message === "Authorization error") {
+                logout();
+            }
+        }
+        setReady(true);
+        
     }, [])
     const logout = useCallback(() => {
         setToken(null);
@@ -27,8 +38,9 @@ export function useAuth() {
         const data = JSON.parse(localStorage.getItem(storageName));
         if (data && data.token) {
             login(data.token, data.userId, data.userLogin);
+        } else {
+            setReady(true);
         }
-        setReady(true);
     }, [login])
 
     return {login, logout, token, userId, userLogin, ready};

@@ -12,7 +12,7 @@ function App() {
     const routes = useRoutes(isAuth);
 
     if (!ready) {
-        return (<Preloader />);   
+        return (<Preloader />);
     }
 
     return (

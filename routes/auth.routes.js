@@ -75,7 +75,7 @@ router.post(
                 userId: user.id
             },
             config.get('jwtSecret'),
-            {expiresIn: '2h' }
+            {expiresIn: '1h' }
         );
 
         res.json({token, userId: user.id, userLogin: user.login});
@@ -85,12 +85,12 @@ router.post(
     }
 })
 
-// router.post('/validate', auth, (req, res) => {
-//     if (req.user) {
-//         res.json({msg: true})
-//     } else {
-//         res.json({msg: false})
-//     }
-// })
+router.post('/validate', auth, (req, res) => {
+    if (req.user) {
+        res.json({msg: true})
+    } else {
+        res.json({msg: false})
+    }
+})
 
 module.exports = router;
