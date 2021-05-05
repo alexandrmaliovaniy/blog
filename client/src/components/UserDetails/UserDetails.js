@@ -2,8 +2,10 @@ import React, {useContext, useState} from 'react';
 import './UserDetails.css';
 import {AuthContext} from '../../context/AuthContext';
 import {useHttp} from '../../hooks/http.hook';
+import UserInformation from '../../pages/UserInformation';
 function UserDetails(props) {
     const {request} = useHttp();
+    const [modal, setModal] = useState(false);
     const {logout, userId, token} = useContext(AuthContext);
     const [follow, setFollow] = useState(props.followers.includes(userId));
     function Logout() {
@@ -28,13 +30,13 @@ function UserDetails(props) {
     }
     return (
         <div className="UserDetails">
-            <img src={props.image || "../avatar.png"} alt="user avatar" />
+            <img src={props.avatar || "../avatar.png"} alt="user avatar" />
             <div className="userLogin">{props.login}</div>
             <div className="userEmail">{props.email}</div>
             {
                 props.isAuthor ? 
                     <div className="control">
-                        <a className="changeInfo" href="/">Change information</a>
+                        <button className="changeInfo" onClick={()=>setModal(true)}>Change information</button>
                         <button onClick={Logout} className="logout">Log out</button>
                     </div>
                 :
@@ -42,6 +44,7 @@ function UserDetails(props) {
                         <button className={follow ? "unfollow" : "follow"} onClick={Follow}>{follow ? "Unfollow" : "Follow"}</button>
                     </div>
             }
+            {modal ? <UserInformation {...props} setModal={setModal} /> : ""}
         </div>
     )
 }

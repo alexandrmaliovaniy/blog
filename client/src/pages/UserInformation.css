@@ -1,0 +1,71 @@
+.UserInformation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+}
+.UserInformation .personalData {
+    position: absolute;
+    width: 30%;
+    margin-top: 100px;
+}
+
+.UserInformation .personalData .mainData {
+    float: left;
+    width: 100%;
+}
+.UserInformation .personalData .mainData #userAvatar {
+    display: none;
+}
+.UserInformation .personalData .mainData .avatarPlaceholder {
+    float: left;
+}
+.UserInformation .personalData .mainData .avatarPlaceholder img {
+    margin: 0;
+    box-shadow: 1px 1px 5px #ccc;
+    cursor: pointer;
+}
+.UserInformation .personalData .mainData input {
+    float: right;
+    width: 50%;
+    margin-top: 40px;
+    height: 30px;
+    padding-left: 10px;
+    border: none;
+    box-shadow: 1px 1px 5px #ccc;
+}
+.UserInformation .personalData .bio {
+    float: left;
+    padding: 20px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 180px;
+    resize: none;
+    outline: none;
+    overflow-y: auto;
+    background: #fff;
+    margin-top: 50px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.UserInformation .personalData button {
+    float: left;
+    width: 100px;
+    margin-left: calc(50% - 50px);
+    margin-top: 20px;
+    color: #fff;
+    background: rgb(45, 223, 59);
+    box-shadow: 1px 1px 5px rgb(37, 175, 49);
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    cursor: pointer;
+}
