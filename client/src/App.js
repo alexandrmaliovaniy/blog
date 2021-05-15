@@ -1,8 +1,8 @@
 import "./App.css";
-import {BrowserRouter as Router} from 'react-router-dom';
-import {useRoutes} from './routes';
-import {useAuth} from './hooks/auth.hook';
-import {AuthContext} from './context/AuthContext';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { useRoutes } from './routes';
+import { useAuth } from './hooks/auth.hook';
+import { AuthContext } from './context/AuthContext';
 import Header from './components/Header/Header';
 import Preloader from './components/Preloaders/PagePreloader';
 
