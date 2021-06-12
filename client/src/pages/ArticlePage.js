@@ -35,7 +35,7 @@ function ArticlePage() {
                 titleImage: data.titleImage,
                 description: data.description,
                 content: data.content,
-                authorLogin: data.authorLogin,
+                author: data.author,
                 publishDate: data.publishDate,
                 votes: data.votes,
                 records: data.records

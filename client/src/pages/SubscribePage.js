@@ -9,22 +9,12 @@ function SubscribePage() {
     const {token} = useContext(AuthContext);
     const [posts, setPosts] = useState([]);
 
-    const loadArticlesContent = useCallback(async(sequence) => {
-        try {
-            const data = await request('/api/post/get', 'POST', sequence);
-            setPosts(data);
-        } catch(e) {
-            console.log(e);
-        }
-    });
-
     const loadArticlesId = useCallback(async() => {
         try {
             const sequence = await request('/api/user/subscribecontent', 'POST', null, {
                 Authorization: `Bearer ${token}`
             });
             setPosts(sequence);
-            loadArticlesContent(sequence);
         } catch(e) {
             console.log(e);
         }

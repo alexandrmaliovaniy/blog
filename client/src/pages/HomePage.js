@@ -14,6 +14,7 @@ function HomePage() {
                 offset,
                 count: 20
             });
+            console.log(data)
             setPosts([...posts, ...data]);
             setOffset(offset + 20);
             

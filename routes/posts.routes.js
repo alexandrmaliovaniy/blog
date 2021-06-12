@@ -4,6 +4,7 @@ const router = Router();
 const Post = require('../models/Post');
 const auth = require('../middleware/auth.middleware');
 const Comments = require('../models/Comments');
+const Types = require('mongodb');
 const Comment = require('../models/Comment');
 
 
@@ -19,7 +20,7 @@ router.post('/new', auth, async (req, res) => {
             description,
             content,
             publishDate: Date.now(),
-            authorLogin: user.login,
+            author: userData.userId,
             votes: 0,
             records: {"0": null}
         })
@@ -28,6 +29,7 @@ router.post('/new', auth, async (req, res) => {
         await user.save();
         res.json({id: post._id});
     } catch (e) {
+        console.log(e);
         res.status(400).json({message: "Error"});
     }
 })
@@ -47,20 +49,76 @@ router.post('/rate', auth, async(req, res) => {
 });
 router.post('/get', async (req, res) => {
     const posts = [];
-    const postsId = req.body;
-    for (let i = 0; i < postsId.length; i++) {
-        const post = await Post.findById(postsId[i]);
-        posts.push(post);
-    }
-    console.log(postsId);
-    res.json(posts);
+    const postsId = req.body.map(el => Types.ObjectId(el));
+    const out = await Post.aggregate([
+        {
+            $match: {
+                _id: {$in: postsId}
+            },
+        },
+        {
+            $lookup: {
+                from: 'users',
+                localField: 'author',
+                foreignField: '_id',
+                as: 'author'
+            }
+        },
+        {
+            $addFields: {
+                author: {$first: "$author"}
+            }
+        },
+        {
+            $project: {
+                _id: 1,
+                title: 1,
+                titleImage: 1,
+                description: 1,
+                content: 1,
+                publishDate: 1,
+                author: {
+                    _id: 1,
+                    login: 1
+                },
+                records: 1,
+                votes: 1
+            }
+        }
+    ])
+    res.json(out);
 });
 router.post('/getrecent', async (req, res) => {
     try {
         const offset = req.body.offset;
         const count = req.body.count < 20 ? req.body.count : 20;
-        const data = await Post.find().sort({publishDate: -1}).skip(offset).limit(count);
-        res.json(data);
+        const recentPosts = await Post.aggregate([
+            {
+                $sort: {
+                    publishDate: -1
+                }
+            },
+            {
+                $skip: offset
+            },
+            {
+                $limit: count
+            },
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'author',
+                    foreignField: '_id',
+                    as: 'author'
+                }
+            },
+            {
+                $addFields: {
+                    author: {$first: "$author"}
+                }
+            }
+        ])
+        res.json(recentPosts);
     } catch (e) {
         console.log(e);
     }
@@ -77,7 +135,26 @@ router.post('/getcomments', async(req, res) => {
         await cm.save();
         res.json(cm);
     } else {
-        res.json(comments);
+        const out = await Comment.aggregate([
+            {
+                $match: {
+                    postId: {$eq: Types.ObjectId(postId)}
+                }
+            },
+            {
+                $lookup: {
+                    from: 'comments',
+                    localField: 'comments',
+                    foreignField: '_id',
+                    as: 'comments'
+                }
+            }
+        ])
+        const a = out[0];
+        for(let i = 0; i < a.comments.length; i++) {
+            a.comments[i].author = await User.findById(a.comments[i].author, {_id: 1, login: 1});
+        }
+        res.json(out[0]);
     }
 });
 
@@ -99,7 +176,7 @@ router.post('/comment', auth, async(req, res) => {
         const commentRecod = new Comment({
             publishDate: Date.now(),
             text: text,
-            authorLogin: user.login
+            author: req.user.userId
         })
         await commentRecod.save();
         const comments = await Comments.findOne({postId});

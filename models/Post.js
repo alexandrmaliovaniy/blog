@@ -6,7 +6,7 @@ const schema = new Schema({
     content: {type: String, required: true},
     description: {type: String, required: true},
     publishDate: {type: Number, required: true},
-    authorLogin: {type: String, required: true},
+    author: {type: Types.ObjectId, required: true},
     votes: {type: Number},
     records: {type: Object}
 });

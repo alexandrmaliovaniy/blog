@@ -10,24 +10,14 @@ function Comments(props) {
 
     const {comments, setComments} = useContext(CommentsContext);
 
-    const getCommentsText = useCallback(async(data) => {
-        try {
-            const text = await request('/api/post/commentsText', 'POST', {
-                comments: data.comments
-            });
-            setComments({...comments, ...data, comments: text, loaded: true});
-        } catch(e) {
-            console.log(e);
-        }
-    });
-
     const getComments = useCallback(async() => {
         try {
             const data = await request('/api/post/getcomments', 'POST', {
                 postId: props.postId
             });
+            data.loaded = true;
+            console.log(data);
             setComments({...comments, ...data});
-            getCommentsText(data);
         } catch(e) {
             console.log(e);
         }
@@ -43,7 +33,7 @@ function Comments(props) {
         <div className="Comments">
             {
                 comments?.comments.map((el, index) => {
-                    return comments.loaded ? <Comment content={el.text} authorLogin={el.authorLogin} publishDate={el.publishDate} key={index} /> : "";
+                    return <Comment content={el.text} author={el.author} publishDate={el.publishDate} key={index} />
                 })
             }
         </div>

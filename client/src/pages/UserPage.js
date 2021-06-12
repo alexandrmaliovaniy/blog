@@ -12,19 +12,10 @@ function UserPage() {
     const [userData, setUserData] = useState(null);
     const {request} = useHttp();
     const userLogin = useParams().login;
-    const getUserPosts = useCallback(async(user) => {
-        try {
-            const posts = await request('/api/post/get', 'post', user.posts);
-            setUserData({...user, posts});
-        } catch(e) {
-            console.log(e);
-        }
-    }, [request, userData])
     const getUser = useCallback(async () => {
         try {
             const user = await request(`/api/user/${userLogin}`, 'GET', null);
             setUserData(user);
-            getUserPosts(user);
         } catch (e) {
             console.log(e);
         }

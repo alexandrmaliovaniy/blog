@@ -12,6 +12,7 @@ function UserDetails(props) {
         logout();
         window.location = '/home';
     }
+    console.log(props._id);
     async function Follow() {
         try {
             let prefix = ""
