@@ -10,7 +10,7 @@ function Header() {
     return (
         <header className='Header'>
             <Link className='Home tab' to="/home" >Home</Link>
-            {auth.isAuth ? <a className="tab" href="/subscribes">Subscribes</a> : ""}
+            {auth.isAuth ? <Link className="tab" to="/subscribes">Subscribes</Link> : ""}
             <Link className='auth tab' to={auth.isAuth ? `/user/${auth.userLogin}` : `/auth`}>
                 <FontAwesomeIcon icon={auth.isAuth ? faUserCircle : faSignInAlt} />
             </Link>

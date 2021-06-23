@@ -4,10 +4,12 @@ import './NewArticlePage.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faDownload} from '@fortawesome/free-solid-svg-icons';
 import {useHttp} from '../hooks/http.hook';
+import {useHistory} from 'react-router-dom';
 import {AuthContext} from '../context/AuthContext';
 
 function NewArticlePage() {
     const {token, logout} = useContext(AuthContext);
+    const history = useHistory();
     const {request} = useHttp();
     const [data, setData] = useState({
         title: "",
@@ -47,7 +49,7 @@ function NewArticlePage() {
             const {id} = await request("/api/post/new", 'POST', data, {
                 Authorization: `Bearer ${token}`
             })
-            window.location = `/post/${id}`;
+            history.push(`/post/preview/${id}`);
         } catch (e) {
             console.log(e);
             // logout();

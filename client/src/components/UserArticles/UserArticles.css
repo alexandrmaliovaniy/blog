@@ -82,7 +82,7 @@
   transition: 0.2s;
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
 }
 
 .UserArticles .UserPost a:hover p {

@@ -1,8 +1,10 @@
 import react, {useState} from 'react';
 import {useHttp} from '../hooks/http.hook';
 import './UserInformation.css';
+import {useHistory} from 'react-router-dom';
 
 function UserInformation(props) {
+    const history = useHistory();
     const {request} = useHttp();
     console.log(props.bio);
     const [data, setData] = useState({
@@ -39,7 +41,7 @@ function UserInformation(props) {
             })
             props.setModal(false);
             props.reLogin(res.token, res.userId, res.userLogin);
-            window.location.reload();
+            history.push(`/user/${res.userLogin}`);
         }catch(e) {
             console.log(e);
         }
