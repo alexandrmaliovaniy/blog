@@ -5,6 +5,19 @@
     margin-right: 20%;
     margin-top: 100px;
 }
-.HomePage .ShortArticle {
-    margin-bottom: 50px;
+
+
+@media all and (max-width: 1440px) {
+    .HomePage {
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+@media all and (max-width: 1024px) {
+    .HomePage {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
 }

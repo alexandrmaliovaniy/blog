@@ -52,7 +52,14 @@
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+@media all and (max-width: 1024px) {
+    .NewArticlePage .postForm .mainData .imgHeadline {
+        width: 100%;
+    }
+    .NewArticlePage .postForm .mainData .imgHeadline .imgPrev {
+        float: left;
+    }
+  }
 .NewArticlePage .postForm .mainData .imgHeadline .imgPrev img {
     width: 100%;
     height: 100%;

@@ -7,7 +7,6 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  box-sizing: border-box;
 }
 .UserArticles .UserPost,
 .UserArticles .newPost,
@@ -96,4 +95,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media all and (max-width: 1024px) {
+  .UserArticles {
+      width: 100%;
+      margin-top: 100px;
+      justify-content: center;
+  }
+  .UserArticles .newPost,
+  .UserArticles .UserPost,
+  .UserArticles .lazyPost {
+    margin-right: 0;
+  }
 }

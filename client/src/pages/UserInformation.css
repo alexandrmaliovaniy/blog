@@ -70,3 +70,19 @@
     height: 30px;
     cursor: pointer;
 }
+
+@media all and (max-width: 1024px) {
+    .UserInformation .personalData {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .UserInformation .personalData .mainData input {
+        width: 100%;
+    }
+    .UserInformation .personalData .mainData {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+  }

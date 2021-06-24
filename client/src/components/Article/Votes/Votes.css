@@ -1,6 +1,8 @@
 .Votes {
     float: left;
-    width: 120px;
+    flex-basis: 120px;
+    flex-grow: 0;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +11,16 @@
     user-select: none;
     background: #efefefef;
 }
+@media all and (max-width: 768px) {
+    .Votes {
+        flex-basis: 80px;
+        font-size: 32px;
+    }
+    .ShortArticle img {
+        display: none;
+    }
+}
+
 .Votes .voteArrow {
     cursor: pointer;
 }

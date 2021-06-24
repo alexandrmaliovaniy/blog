@@ -3,6 +3,12 @@
     width: 300px;
     font-family: 'Arial';
 }
+@media all and (max-width: 1024px) {
+    .UserDetails {
+        margin-left: calc(50% - 150px);
+        margin-right: calc(50% - 150px);
+    }
+}
 .UserDetails img {
     float: left;
     width: 200px;
