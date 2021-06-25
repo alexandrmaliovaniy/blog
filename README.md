@@ -1,10 +1,11 @@
-# blog
+# Blog
 
 
 * React
 * Express
 * MongoDB
 * JWT
+* Responsive design
 
 ## Setup
 
