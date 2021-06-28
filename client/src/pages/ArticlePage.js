@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useCallback, useEffect, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import {useHttp} from '../hooks/http.hook';
 import ShortArticle from '../components/Article/ShortArticle/ShortArticle';
@@ -6,9 +6,11 @@ import './ArticlePage.css';
 import CommentForm from '../components/CommentForm/CommentForm';
 import Comments from "../components/Comments/Comments";
 import {CommentsContext} from '../context/CommentsContext';
+import {AuthContext} from '../context/AuthContext';
 
 function ArticlePage() {
     const {request} = useHttp();
+    const {isAuth} = useContext(AuthContext);
     const [comments, setComments] = useState({loaded:false, comments: []});
     const [data, setData] = useState({
         loaded: false,
@@ -56,8 +58,10 @@ function ArticlePage() {
                 {data.content}
             </div>
             <CommentsContext.Provider value={{comments, setComments}}>
-                <Comments postId={data._id} />
-                <CommentForm postId={articleId} />
+                <div className="commentWrapper">
+                    <Comments postId={data._id} />
+                </div>
+                {isAuth && <CommentForm postId={articleId} />}
             </CommentsContext.Provider>
         </article>
     )

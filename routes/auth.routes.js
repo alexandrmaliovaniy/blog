@@ -9,13 +9,6 @@ const router = Router();
 
 router.post(
     "/register",
-    [
-        check('email', 'Wrong email format').isEmail(),
-        check('password', 'Wrong password format')
-        .isLength({min: 7, max: 24}),
-        check('login', 'Wrong login format')
-        .isLength({min: 3, max: 18})
-    ],
     async (req, res) => {
     try {
         const errors = validationResult(req);
@@ -75,7 +68,7 @@ router.post(
                 userId: user.id
             },
             config.get('jwtSecret'),
-            {expiresIn: '1h' }
+            {expiresIn: '2h' }
         );
 
         res.json({token, userId: user.id, userLogin: user.login});

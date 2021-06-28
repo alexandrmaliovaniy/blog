@@ -18,7 +18,11 @@
     white-space: pre-line;
     margin-bottom: 20px;
 }
-
+.ArticlePage .commentWrapper {
+    float: left;
+    width: 100%;
+    padding-right: 50%;
+}
 .ArticlePage .CommentForm {
     float: right;
     width: 40%;
@@ -30,5 +34,8 @@
     }
     .ArticlePage .CommentForm {
         width: 100%;
+    }
+    .ArticlePage .commentWrapper {
+        padding-right: 0;
     }
   }
